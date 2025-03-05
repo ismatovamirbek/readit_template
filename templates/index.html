@@ -36,8 +36,8 @@
 <!-- Readit Blogs -->
 <section class="ftco-section">
     <div class="container">
+        {% for i in blog %}
         <div class="row">
-            {% for i in blog %}
             <div class="col-md-12">
                 <div class="case">
                     <div class="row">
@@ -61,10 +61,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
         <div class="row mt-5">
             <div class="col text-center">
                 <div class="block-27">

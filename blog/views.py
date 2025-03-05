@@ -1,24 +1,45 @@
-from django.core.paginator import Paginator
-from django.shortcuts import render
-from .models import Blog, Article
-
+from django.shortcuts import render, redirect
+from .models import Blog, Article, Author, Blog_info
+from .forms import CommentForm
 
 def index(request):
-    return render(request, "index.html")
+   blog = Blog.objects.all()
+   context = {
+       "blog": blog
+   }
+   return render(request, "index.html", context)
 
 
-def blog(request):
-    blogs = Blog.objects.all()
-    ctx = {
-        "blogs": blogs
+def detail(request, pk):
+    blog = Blog.objects.get(id=pk)
+    blog_info = Blog_info.objects.filter(blog=blog)  # Assuming Blog_info is related to Blog
+    author = Author.objects.filter(blog=blog)  # Assuming Author is related to Blog
+
+    comment = CommentForm(request.POST or None)
+    if comment.is_valid():
+        com = comment.save(commit=False)
+        com.blog = blog
+        com.save()
+        return redirect(".")
+
+    context = {
+        "blog": blog,
+        "blog_info": blog_info,
+        "author": author,
+        "comment": comment
     }
-    return render(request, 'index.html', ctx)
+
+    return render(request, "blog-single.html", context)
 
 
 def article(request):
     article = Article.objects.all()
+
     context = {
-        "article": article
+        "article": article,
     }
 
     return render(request, "blog.html", context)
+
+
+
