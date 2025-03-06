@@ -51,9 +51,9 @@
                                 <span class="mos">{{ i.year }}</span>
                             </div>
                         </div>
-                        <h3 class="heading mb-3"><a href="/blog/detail/">{{ i.title }}</a></h3>
+                        <h3 class="heading mb-3"><a href="/blog/detail/{{ i.id }}">{{ i.title }}</a></h3>
                         <p>{{ i.info }}.</p>
-                        <p><a href="#" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read
+                        <p><a href="/blog/detail/{{ i.id }}" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read
                             more</a></p>
                     </div>
                 </div>

@@ -12,8 +12,8 @@ def index(request):
 
 def detail(request, pk):
     blog = Blog.objects.get(id=pk)
-    blog_info = Blog_info.objects.filter(blog=blog)  # Assuming Blog_info is related to Blog
-    author = Author.objects.filter(blog=blog)  # Assuming Author is related to Blog
+    blog_info = Blog_info.objects.all()
+    author = Author.objects.all()
 
     comment = CommentForm(request.POST or None)
     if comment.is_valid():
