@@ -34,6 +34,7 @@ class Article(models.Model):
 
 
 class Blog_info(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="blog_infos")  # Added ForeignKey
     image = models.ImageField(upload_to="blog_single_photos/")
     title = models.CharField(max_length=50)
     text = models.TextField()
